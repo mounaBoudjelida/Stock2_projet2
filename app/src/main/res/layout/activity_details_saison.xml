@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="app.youcef.com.stock2.Controller.detailsSaison"
+    android:background="@color/colorbackground">
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.hp.tdm1_projet.Controller.detailsSerie"
+        android:orientation="vertical"
+        android:background="@color/colorbackground"
+        android:id="@+id/detailSaisonLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageDetailSaison"
+            android:layout_width="148dp"
+            android:layout_height="200dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/reasons_why_saison1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/detailSaisonTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="detailSaisonTitle"
+                android:textAlignment="center"
+                android:textColor="@color/colorYellow"
+                android:textSize="28dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/detailSaisonDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="10dp"
+                android:padding="10dp"
+                android:text="Tandis que le lycée est endeuillé par la disparition d'Hannah, elle ne se suicide."
+                android:textAlignment="textStart"
+                android:textColor="@color/colorEcriture"
+                android:textSize="16dp"
+                android:gravity="start" />
+        </LinearLayout>
+</LinearLayout>
+        <TextView
+            android:id="@+id/personnageAssocie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personnages associées:"
+            android:textColor="@color/colorYellow"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"/>
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/saisonsLayout"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                /*_____________Put here les images des personnages associees________*/
+                <ImageView
+                    android:id="@+id/personnage1"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/katherine" />
+                <ImageView
+                    android:id="@+id/personnage2"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/dylan" />
+                <ImageView
+                    android:id="@+id/personnage3"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/alisha" />
+                <ImageView
+                    android:id="@+id/personnage4"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/chris" />
+                <ImageView
+                    android:id="@+id/personnage5"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/bran" />
+
+                /*___________________________________________________________________*/
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        /*_____________________Les episode_______________________/*
+
+
+        <TextView
+            android:id="@+id/saisons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saisons:"
+            android:textColor="@color/colorYellow"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/episodesLayout"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="1"
+                android:id="@+id/episode1"
+                android:background="@drawable/border_image"
+                android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="2"
+                    android:id="@+id/episode2"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="3"
+                    android:id="@+id/episode3"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="4"
+                    android:id="@+id/episode4"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="5"
+                    android:id="@+id/episode5"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="6"
+                    android:id="@+id/episode6"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="7"
+                    android:id="@+id/episode7"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="8"
+                    android:id="@+id/episode8"
+                    android:background="@drawable/border_image"
+                    android:textColor="@color/colorYellow"
+                    android:layout_marginRight="10dp"/>
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/commentaires"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Commentaires et évaluations"
+            android:textColor="@color/colorYellow"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:padding="20dp">
+
+            <net.steamcrafted.materialiconlib.MaterialIconView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iconJaime"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:materialIcon="thumb_up"
+                app:materialIconColor="@color/colorGris"
+                app:materialIconSize="28dp"
+                android:layout_margin="10dp"
+                /> <!-- VERY IMPORTANT -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="245"
+                android:id="@+id/nbJaime"
+                android:textColor="@color/colorGris"
+                android:textSize="18dp"
+                android:layout_margin="10dp"/>
+
+            <net.steamcrafted.materialiconlib.MaterialIconView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iconJaimePas"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:materialIcon="thumb_down"
+                app:materialIconColor="@color/colorGris"
+                app:materialIconSize="28dp"
+                android:layout_margin="10dp"
+                /> <!-- VERY IMPORTANT -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:id="@+id/nbJaimePas"
+                android:textColor="@color/colorGris"
+                android:textSize="18dp"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/insererCommentaire"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/colorEcriture"
+                android:textColorLink="@color/colorYellow"
+                android:inputType="textMultiLine"
+                android:hint="Ajouter un commentaire: "
+                android:paddingBottom="10dp"
+                android:textCursorDrawable="@null"
+                android:textColorHint="@color/colorCommentaire"
+                android:background="@drawable/backwithborder"
+
+                />
+            <Button
+                android:id="@+id/btnAjouter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Ajouter"
+                android:background="@color/colorYellow"
+                android:textColor="@color/colorbackground"
+                android:textSize="14dp"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                />
+
+        </LinearLayout>
+        <!-- ce layout va contenir la liste des commentaires qui sera ajoutée automatiquement -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentaireLayout"
+            android:background="@drawable/customborder"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:id="@+id/commentaire1"
+                android:textColor="@color/colorEcriture"
+                android:textSize="18dp"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:id="@+id/commentaire2"
+                android:textColor="@color/colorEcriture"
+                android:textSize="18dp"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:id="@+id/commentaire3"
+                android:textColor="@color/colorEcriture"
+                android:textSize="18dp"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

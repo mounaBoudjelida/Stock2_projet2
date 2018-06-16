@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dp"
+    android:background="@color/colorbackground">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.hp.tdm1_projet.Controller.detailsPersonne"
+        android:orientation="vertical"
+        android:background="@color/colorbackground"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/imageDetails"
+            android:layout_width="match_parent"
+            android:layout_height="156dp"
+            app:srcCompat="@drawable/acteur_1" />
+
+        <TextView
+            android:id="@+id/textViewDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            tools:text="George Cloney"
+            android:textColor="@color/colorYellow"
+            android:textStyle="italic"/>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorbackground">
+            <TextView
+                android:id="@+id/textViewDateNaiss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date de naissance:  "
+                android:textSize="20dp"
+                android:textColor="@color/colorYellow"/>
+            <TextView
+                android:id="@+id/dateNaissance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14/01/1994"
+                android:textSize="20dp"
+                android:textColor="@color/colorEcriture"/>
+
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+
+        <TextView
+            android:id="@+id/Biographie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Biographie: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorYellow"/>
+
+        <TextView
+            android:id="@+id/biographieContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="16dp"
+            android:textColor="@color/colorEcriture"
+            android:background="@drawable/customborder"
+            />
+
+        <TextView
+            android:id="@+id/filmographie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Filmographie: "
+            android:textColor="@color/colorYellow"/>
+
+        <TextView
+            android:id="@+id/filmographieContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="16dp"
+            android:textColor="@color/colorEcriture"
+            android:background="@drawable/customborder"/>
+
+        <TextView
+            android:id="@+id/commentaires"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Commentaires et évaluations: "
+            android:textColor="@color/colorYellow"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="left"
+           android:padding="20dp"
+           android:paddingBottom="0dp">
+
+           <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/iconJaimePersonne"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               app:materialIcon="thumb_up"
+               app:materialIconColor="@color/colorGris"
+               app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="245"
+               android:id="@+id/nbJaime"
+               android:textColor="@color/colorGris"
+               android:textSize="18dp"
+               android:layout_margin="10dp"/>
+
+           <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/iconJaimePasPersonne"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               app:materialIcon="thumb_down"
+               app:materialIconColor="@color/colorGris"
+               app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="24"
+               android:id="@+id/nbJaimePas"
+               android:textColor="@color/colorGris"
+               android:textSize="18dp"
+               android:layout_margin="10dp"/>
+
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:paddingTop="0dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/insererCommentairePersonne"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/colorEcriture"
+                android:textColorLink="@color/colorYellow"
+                android:inputType="textMultiLine"
+                android:hint="Ajouter un commentaire"
+                android:paddingBottom="10dp"
+                android:textCursorDrawable="@null"
+                android:textColorHint="@color/colorCommentaire"
+                android:background="@drawable/backwithborder"
+                />
+            <Button
+                android:id="@+id/btnAjouterPersonne"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Ajouter"
+                android:background="@color/colorYellow"
+                android:textColor="@color/colorbackground"
+                android:textSize="14dp"
+                android:layout_marginLeft="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/commentairePersonneLayout"
+            android:background="@drawable/customborder"
+            android:orientation="vertical">
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

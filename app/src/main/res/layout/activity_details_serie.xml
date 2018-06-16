@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="0dp"
+    android:background="@color/colorbackground">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp.tdm1_projet.Controller.detailsSerie"
+    android:orientation="vertical"
+    android:background="@color/colorbackground"
+    android:id="@+id/detailSerieLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageDetailSerie"
+            android:layout_width="148dp"
+            android:layout_height="200dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/reasons_why" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+           <TextView
+               android:id="@+id/detailSerieTitle"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="10dp"
+               android:text="detailSerieTitle"
+               android:textAlignment="center"
+               android:textColor="@color/colorYellow"
+               android:textSize="28dp"
+               android:textStyle="italic" />
+
+           <TextView
+               android:id="@+id/detailSerieDescription"
+               android:layout_width="match_parent"
+               android:layout_height="150dp"
+               android:layout_marginBottom="10dp"
+               android:padding="10dp"
+               android:text="Une petite description"
+               android:textAlignment="textStart"
+               android:textColor="@color/colorEcriture"
+               android:textSize="16dp" />
+       </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/seriesLiees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Séries liées:"
+        android:textColor="@color/colorYellow"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSeriesLiees"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/saisons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saisons:"
+        android:textColor="@color/colorYellow"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"/>
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/saisonsLayout"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+        android:id="@+id/commentaires"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Commentaires et évaluations"
+        android:textColor="@color/colorYellow"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:padding="20dp">
+
+        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iconJaime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:materialIcon="thumb_up"
+            app:materialIconColor="@color/colorGris"
+            app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="245"
+            android:id="@+id/nbJaime"
+            android:textColor="@color/colorGris"
+            android:textSize="18dp"
+            android:layout_margin="10dp"/>
+
+        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iconJaimePas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:materialIcon="thumb_down"
+            app:materialIconColor="@color/colorGris"
+            app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24"
+            android:id="@+id/nbJaimePas"
+            android:textColor="@color/colorGris"
+            android:textSize="18dp"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/insererCommentaire"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textColor="@color/colorEcriture"
+            android:textColorLink="@color/colorYellow"
+            android:inputType="textMultiLine"
+            android:hint="Ajouter un commentaire: "
+            android:paddingBottom="10dp"
+            android:textCursorDrawable="@null"
+            android:textColorHint="@color/colorCommentaire"
+            android:background="@drawable/backwithborder"
+
+            />
+        <Button
+            android:id="@+id/btnAjouter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Ajouter"
+            android:background="@color/colorYellow"
+            android:textColor="@color/colorbackground"
+            android:textSize="14dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            />
+
+    </LinearLayout>
+    <!-- ce layout va contenir la liste des commentaires qui sera ajoutée automatiquement -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commentaireLayout"
+        android:background="@drawable/customborder"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+
+</LinearLayout>
+</ScrollView>

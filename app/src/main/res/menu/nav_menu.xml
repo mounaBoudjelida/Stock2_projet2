@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/accueil"
+            android:title="Accueil"
+            android:icon="@drawable/ic_home_black_24dp"/>
+
+        <item
+            android:id="@+id/cinema"
+            android:title="Cinéma"
+            android:icon="@drawable/ic_movie_black_24dp"/>
+
+        <item
+            android:id="@+id/serie"
+            android:title="Séries"
+            android:icon="@drawable/ic_queue_play_next_black_24dp"/>
+        <item
+            android:id="@+id/personne"
+            android:title="Acteurs et Réalisateurs"
+            android:icon="@drawable/ic_recent_actors_black_24dp"/>
+        <item
+            android:id="@+id/fan"
+            android:title="Mes favoris"
+            android:icon="@drawable/ic_favorite_black_24dp"/>
+    </group>
+
+</menu>

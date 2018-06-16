@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Biographie">
+            <item>Il devient célèbre grâce à son rôle du docteur Doug Ross dans la série télévisée Urgences. Depuis, il mène une importante carrière au cinéma à travers Ocean\'s Eleven, Confessions d\'un homme dangereux, Good Night and Good Luck et Syriana (qui lui a valu l\'Oscar du meilleur acteur dans un second rôle).</item>
+            <item>Matt Damon, est un acteur, scénariste et producteur de cinéma américain, né le 8 octobre 1970 à Cambridge (Massachusetts).
+
+Il est révélé en incarnant les rôles-titres de Will Hunting et Il faut sauver le soldat Ryan. Il est par la suite à l\'affiche de la trilogie Ocean (Ocean\'s Eleven, Ocean\'s Twelve, Ocean\'s Thirteen) et de la série de films Jason Bourne (La Mémoire dans la peau, La Mort dans la peau, La Vengeance dans la peau et Jason Bourne). Il apparaît également dans d\'autres longs-métrages comme Syriana ou Les Infiltrés.</item>
+            <item>Biographie 3</item>
+            <item>Biographie 4</item>
+            <item>Biographie 5</item>
+            <item>Biographie 6</item>
+            <item>Biographie 7</item>
+            <item>Biographie 8</item>
+            <item>Biographie 9</item>
+
+</string-array>
+    <string-array name="Filmographie">
+        <item>1986 : Combat Academy, 1987 : Grizzly II: The Predator, 1987 : Return to HorrorHigh</item>
+        <item>2011 : Happy Feet 2 de George Miller : Bill, 2008 : Ponyo sur la falaise , 2002 : Spirit, étalon des plaines </item>
+        <item>filmographie 3</item>
+        <item>filmographie 4</item>
+        <item>filmographie 5</item>
+        <item>filmographie 6</item>
+        <item>filmographie 7</item>
+        <item>filmographie 8</item>
+        <item>filmographie 9</item>
+    </string-array>
+</resources>

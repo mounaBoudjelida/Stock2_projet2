@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Desriptionfilme">
+        <item>Dans le futur, en l’an 2154, Jake Sully, ancien marine, paraplégique, accepte de participer au avatar</item>
+        <item>Durant la grande guerre qui opposa les Autobots d'Optimus Prime aux Decepticons de Megatron sur  </item>
+        <item>Après plusieurs expériences sur eux, des individus surnommé les « Guardians » sont demandés par </item>
+        <item>Au milieu du xviiie siècle, le gouverneur Weatherby Swann et sa fille Elizabeth, alors âgée de douze ans, </item>
+        <item>En 1973, George Smiley est un agent du MI6 et l'un de ses principaux dirigeants. À la suite  </item>
+        <item>Depuis des siècles, deux races immortelles et légendaires, les lycans (plus connu sous le.</item>
+        <item>Un beau prince est victime d'une malédiction le transformant en une horrible Bête.</item>
+
+    </string-array>
+
+    <string-array name="acteurs">
+
+        <item>James Cameron,Rick Carter et Robert Stromberg</item>
+        <item></item>
+        <item></item>
+        <item>Gore Verbinski, Jhonny depp</item>
+        <item></item>
+        <item></item>
+
+    </string-array>
+
+    <string-array name="FilmeLies">
+        //_____________13 reasons why____________//
+        <item>- Liar, la nuit du mensonge;</item>
+        <item>- Liar, la nuit du mensonge;</item>
+        <item>- Liar, la nuit du mensonge</item>
+        //____________The good doctor_____________//
+        <item>- Locas de Amor</item>
+        <item>- Keeping Canada Alive</item>
+        <item></item>
+        //____________Suits_______________________//
+        <item>- Boston Legal</item>
+        <item>- The Good Wife</item>
+        <item>- House of Cards</item>
+        //____________Game of thrones_____________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //____________Vikings____________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_____________WestWorld_________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //______________Mr Robot_________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_____________Vampire Diaries____________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Arrow_____________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Here and now______________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+
+        //_______________Greys anatomy______________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Dr house___________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+
+    </string-array>
+
+
+</resources>

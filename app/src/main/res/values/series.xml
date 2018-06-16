@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Desription">
+        <item>Une adolescente se suicide, et enregistre une série de cassette quelle envoie donnant 13 raisons de son passage à lacte.</item>
+        <item>The Good Doctor est une série télévisée médicale américaine développée par David Shore et Daniel Dae Kim, basée sur la série sud-coréenne 2013  </item>
+        <item>Avocats sur mesure ou Suits : Les deux font la paire au Québec est une série télévisée américaine créée par Aaron Korsh, diffusée depuis le 23</item>
+        <item>Game of Thrones, également désignée par le titre français de lœuvre romanesque dont elle est adaptée, Le Trône de fer, est une série télévisée</item>
+        <item>Vikings est une série télévisée canado-irlandaise créée par Michael Hirst, diffusée simultanément depuis le 3 mars 2013 sur les chaînes </item>
+        <item>Westworld est une série télévisée américaine de science-fiction créée par Jonathan Nolan et Lisa Joy, et notamment produite par J. J. Abrams </item>
+        <item>Mr. Robot est une série télévisée américaine créée par Sam Esmail et diffusée depuis le 24 juin 2015 sur USA Network et depuis le 5 septembre</item>
+        <item>Vampire Diaries ou Journal dun vampire au Québec, est une série télévisée américaine en 171 épisodes d environ 41 minutes, développée par Julie </item>
+        <item>Arrow est une série télévisée américaine créée par Andrew Kreisberg, Greg Berlanti et Marc Guggenheim, diffusée simultanément depuis le</item>
+        <item>Here and Now, est une série télévisée américaine en dix épisodes de 60 minutes créée par Alan Ball et diffusée depuis le 11 février 2018 sur HBO.</item>
+        <item>Greys Anatomy ou D Grey, leçons d anatomie au Québec est une série télévisée médicale américaine, créée par Shonda Rhimes et diffusée depuis le 27 </item>
+        <item>Dr House est une série télévisée américaine en 177 épisodes de 42 minutes et répartis sur huit saisons, créée par David Shore et diffusée du 16 </item>
+    </string-array>
+    <string-array name="SerieLiees">
+        //_____________13 reasons why____________//
+        <item>- Liar, la nuit du mensonge;</item>
+        <item>- Liar, la nuit du mensonge;</item>
+        <item>- Liar, la nuit du mensonge</item>
+        //____________The good doctor_____________//
+        <item>- Locas de Amor</item>
+        <item>- Keeping Canada Alive</item>
+        <item></item>
+        //____________Suits_______________________//
+        <item>- Boston Legal</item>
+        <item>- The Good Wife</item>
+        <item>- House of Cards</item>
+        //____________Game of thrones_____________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //____________Vikings____________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_____________WestWorld_________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //______________Mr Robot_________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_____________Vampire Diaries____________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Arrow_____________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Here and now______________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+
+        //_______________Greys anatomy______________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+        //_______________Dr house___________________//
+        <item>- Aucune</item>
+        <item></item>
+        <item></item>
+
+    </string-array>
+    <integer-array name="saisons">
+        //_____________13 reasons why____________//
+        <item>10</item>
+
+        //____________The good doctor_____________//
+        <item>6</item>
+
+        //____________Suits_______________________//
+        <item>7</item>
+
+        //____________Game of thrones_____________//
+        <item>5</item>
+
+        //____________Vikings____________________//
+        <item>6</item>
+
+        //_____________WestWorld_________________//
+        <item>7</item>
+
+        //______________Mr Robot_________________//
+        <item>5</item>
+
+        //_____________Vampire Diaries____________//
+        <item>6</item>
+
+        //_______________Arrow_____________________//
+        <item>7</item>
+        //_______________Here and now_____________________//
+        <item>7</item>
+
+        //_______________Greys anatomy______________//
+        <item>5</item>
+
+        //_______________Dr house______________//
+        <item>6</item>
+
+    </integer-array>
+
+
+</resources>
