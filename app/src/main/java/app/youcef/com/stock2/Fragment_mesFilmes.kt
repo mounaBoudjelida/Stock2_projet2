@@ -23,7 +23,7 @@ class Fragment_mesFilmes:Fragment(){
 
          var view= inflater!!.inflate(R.layout.fragment_mesfilmes, container, false)
          var recyclerView=view.findViewById<RecyclerView>(R.id.mesfilmesGridView) as RecyclerView
-         adapter= FilmeAdapter(this.context,DataService.mesFilmes){filme ->
+         /*adapter= FilmeAdapter(this.context,DataService.mesFilmes){filme ->
              println(filme.title)
              val filmeIntent= Intent(this.context, DetailsFilme::class.java)
              filmeIntent.putExtra(EXTRA_FILME,filme.id)
@@ -31,7 +31,7 @@ class Fragment_mesFilmes:Fragment(){
          }
          var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,2)
          recyclerView.layoutManager=mLayoutManager
-         recyclerView.adapter=adapter
+         recyclerView.adapter=adapter*/
 
          return view
     }

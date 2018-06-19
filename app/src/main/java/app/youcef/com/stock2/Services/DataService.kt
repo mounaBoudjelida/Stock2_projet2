@@ -1,7 +1,12 @@
 package app.youcef.com.stock2.Services
 
+import android.util.Log
 import app.youcef.com.stock2.Model.*
 import app.youcef.com.stock2.R
+import app.youcef.com.stock2.remote.FilmeAPIClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by hp on 17/04/2018.
@@ -26,150 +31,35 @@ object DataService {
 
     )
 
-    val series= listOf(
-            Serie("13 reasons why","reasons_why",0),
-            Serie("The good doctor","good_doctor",1),
-            Serie("Suits","suits",2),
-            Serie("Game Of Thrones","game_of_thrones",3),
-            Serie("Vikings","vikings",4),
-            Serie("WestWorld","west_world",5),
-            Serie("Mr Robot","mr_robot",6),
-            Serie("Vampire Diaries","vampire_daries",7),
-            Serie("Arrow","arrow",8),
-            Serie("Greys anatomy","greys_anatomie",9) ,
-            Serie("Dr House","dr_house",10)
-    )
-    val seriesEncours= listOf(
-            Serie("Suits","suits",2),
-            Serie("Game Of Thrones","game_of_thrones",3),
-            Serie("Vikings","vikings",4),
-            Serie("Arrow","arrow",8),
-            Serie("Greys anatomy","greys_anatomie",9)
-    )
-
-    val mesSeries= listOf(
-            Serie("Suits","suits",2),
-            Serie("Game Of Thrones","game_of_thrones",3),
-            Serie("Vikings","vikings",4)
-    )
-
-
-
-    val seriesLiees1= listOf(
-            Serie("Suits","suits",2)
-    )
-    val seriesLiees2= listOf(
-            Serie("Dr House","dr_house",10),
-            Serie("Greys anatomy","greys_anatomie",9)
-    )
-    val seriesLiees3= listOf(
-            Serie("13 reasons why","reasons_why",0)
-    )
-    val seriesLiees4= listOf(
-            Serie("Vikings","vikings",4),
-            Serie("WestWorld","west_world",5)
-    )
-    val seriesLiees5= listOf(
-            Serie("Game Of Thrones","game_of_thrones",3),
-            Serie("WestWorld","west_world",5)
-    )
-    val seriesLiees6= listOf(
-            Serie("Game Of Thrones","game_of_thrones",3),
-            Serie("Vikings","vikings",4)
-    )
-    val seriesLiees7= listOf(
-            Serie("","",0)
-    )
-    val seriesLiees8= listOf(
-            Serie("Arrow","arrow",8)
-    )
-    val seriesLiees9= listOf(
-            Serie("Vampire Diaries","vampire_daries",7)
-    )
-    val seriesLiees10= listOf(
-            Serie("The good doctor","good_doctor",1),
-            Serie("Dr House","dr_house",10)
-    )
-    val seriesLiees11= listOf(
-            Serie("The good doctor","good_doctor",1),
-            Serie("Greys anatomy","greys_anatomie",9)
-    )
-
-
-    val seriesLiees = listOf(
-            seriesLiees1,
-            seriesLiees2,
-            seriesLiees3,
-            seriesLiees4,
-            seriesLiees5,
-            seriesLiees6,
-            seriesLiees7,
-            seriesLiees8,
-            seriesLiees9,
-            seriesLiees10,
-            seriesLiees11
-    )
 
 
 
 
-    val filmes= listOf(
-            Filme("Avatar 2","film1",null,0),
-            Filme("Transformers 3","film2",null,1),
-            Filme("Guardians","film3","30",2),
-            Filme("Pirates des caraïbes","film4","12",3),
-            Filme("La taupe","film5","24",4),
-            Filme("Underworld","film6",null,5),
-            Filme("La belle et la bête","film7","10",6)
 
-    )
 
-    val mesFilmes= listOf(
-            Filme("Avatar 2","film1",null,0),
-            Filme("Transformers 3","film2",null,1),
-            Filme("Guardians","film3","30",2),
-            Filme("Underworld","film6",null,5),
-            Filme("La belle et la bête","film7","10",6)
 
-    )
 
-    val filmesProject= listOf(
-            Filme("Pirates des caraïbes","film4","Salle 12",3),
-            Filme("La taupe","film5","Salle 24",4),
-            Filme("La belle et la bête","film7","Salle 10",6),
-            Filme("Guardians","film3","Salle 30",2)
-    )
 
-    val filmesLies1= listOf(
-            Filme("Transformers 3","film2",null,1)
-    )
 
-    val filmesLies2= listOf(
-            Filme("Avatar 2","film1",null,0)
-    )
 
-    val filmesLies3= listOf(
-            Filme("Pirates des caraïbes","film4","Salle 12",3)
-    )
 
-    val filmesLies4= listOf(
-            Filme("Underworld","film6",null,5),
-            Filme("La belle et la bête","film7","10",6)
-    )
 
-    val filmesLies5= listOf(
-            Filme("Pirates des caraïbes","film4","Salle 12",3)
-    )
 
-    val filmesLies6= listOf(
-            Filme("La belle et la bête","film7","10",7),
-            Filme("Pirates des caraïbes","film4","Salle 12",3)
-    )
+    var k =listOf(12,8)
+    val filmesLies1:List<Filme> = arrayListOf(Filme(1,2,true,65.0,"djdj",98.0
+    ,"\\/9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg","english","origin title",k,"",
+    true,"over",null,null,null))
 
-    val filmesLies7= listOf(
-            Filme("Underworld","film6",null,6),
-            Filme("Pirates des caraïbes","film4","Salle 12",3)
-    )
+    val filmesLies2= filmesLies1
+
+    val filmesLies3= filmesLies1
+
+    val filmesLies4= filmesLies1
+
+    val filmesLies5=filmesLies1
+
+    val filmesLies6=filmesLies1
+    val filmesLies7= filmesLies1
 
     val filmesLies = listOf(
             filmesLies1,
@@ -423,22 +313,9 @@ object DataService {
     )
     var listeVide= arrayListOf<Commentaire>()
     fun getListeCommentaireSerie( serieTitle:String):ArrayList<Commentaire>{
-        when(serieTitle){
-            series[0].title->return commentaire13ReasonsWhy
-            series[1].title->return commentaireTheGoodDoctor
-            series[2].title->return commentaireSuits
-            series[3].title->return commentaireGameOfThrones
-            series[4].title->return commentaireVikings
-            series[5].title->return commentaireWestWorld
-            series[6].title->return commentaireMrRobot
-            series[7].title->return commentaireVampireDiaries
-            series[8].title->return commentaireArrow
-            series[9].title->return commentaireHereAndNow
-            series[10].title->return commentaireGreysAnatomy
-            series[11].title->return commentaireDrHouse
-            else ->return listeVide
+        return listeVide
 
-        }
+
     }
     fun getListeCommentairePersonne( personneNom:String):ArrayList<Commentaire>{
         when(personneNom){
@@ -458,7 +335,7 @@ object DataService {
     }
 
     fun getListeCommentaireFilme( filmeTitle:String):ArrayList<Commentaire>{
-        when(filmeTitle){
+        /*when(filmeTitle){
             filmes[0].title->return commentaires[0]
             filmes[1].title->return commentaires[1]
             filmes[2].title->return commentaires[2]
@@ -468,7 +345,8 @@ object DataService {
             filmes[6].title->return commentaires[6]
             else ->return listeVide
 
-        }
+        }*/
+        return commentaires[6]
     }
 
     fun addCommentairePersonne(c:Commentaire, personneNom:String){
@@ -487,31 +365,43 @@ object DataService {
     }
     fun addCommentaireSerie( c:Commentaire,serieTitle:String){
         when(serieTitle){
-            series[0].title->commentaire13ReasonsWhy.add(c)
-            series[1].title->commentaireTheGoodDoctor.add(c)
-            series[2].title->commentaireSuits.add(c)
-            series[3].title->commentaireGameOfThrones.add(c)
-            series[4].title->commentaireVikings.add(c)
-            series[5].title->commentaireWestWorld.add(c)
-            series[6].title->commentaireMrRobot.add(c)
-            series[7].title->commentaireVampireDiaries.add(c)
-            series[8].title->commentaireArrow.add(c)
-            series[9].title->commentaireHereAndNow.add(c)
-            series[10].title->commentaireGreysAnatomy.add(c)
-            series[11].title->commentaireDrHouse.add(c)
+            series[0].name->commentaire13ReasonsWhy.add(c)
+            series[1].name->commentaireTheGoodDoctor.add(c)
+            series[2].name->commentaireSuits.add(c)
+            series[3].name->commentaireGameOfThrones.add(c)
+            series[4].name->commentaireVikings.add(c)
+            series[5].name->commentaireWestWorld.add(c)
+            series[6].name->commentaireMrRobot.add(c)
+            series[7].name->commentaireVampireDiaries.add(c)
+            series[8].name->commentaireArrow.add(c)
+            series[9].name->commentaireHereAndNow.add(c)
+            series[10].name->commentaireGreysAnatomy.add(c)
+            series[11].name->commentaireDrHouse.add(c)
         }
     }
 
     fun addCommentaireFilme( c:Commentaire,filmeTitle:String){
         when(filmeTitle){
-            filmes[0].title->commentaires[0].add(c)
-            filmes[1].title->commentaires[1].add(c)
-            filmes[2].title->commentaires[2].add(c)
-            filmes[3].title->commentaires[3].add(c)
-            filmes[4].title->commentaires[4].add(c)
-            filmes[5].title->commentaires[5].add(c)
-            filmes[6].title->commentaires[6].add(c)
+
 
         }
     }
+
+
+    var filmes:List<Filme> = arrayListOf()
+    var series:List<Serie> = arrayListOf()
+    var seriesEnCoursDeProjection:List<Serie> = arrayListOf()
+    var seriesLiees:List<Serie> = arrayListOf()
+
+    var filmesProject:List<Filme> = listOf(Filme(1,2,true,65.0,"DataServiceTitle",98.0
+    ,"\\/9O7gLzmreU0nGkIB6K3BsJbzvNv.jpg","english","origin title",k,"",
+            true,"over",null,null,null))
+
+
+
+
+
+
+
+
 }

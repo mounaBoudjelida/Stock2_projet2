@@ -25,7 +25,7 @@ class Fragment_mesSeries:Fragment(){
          var view= inflater!!.inflate(R.layout.fragment_messeries, container, false)
          var recyclerView=view.findViewById<RecyclerView>(R.id.messerieGridView) as RecyclerView
          adapter= SerieAdapter(this.context,DataService.series){serie ->
-             println(serie.title)
+             println(serie.name)
              val serieIntent= Intent(this.context, detailsSerie::class.java)
              serieIntent.putExtra(EXTRA_SERIE,serie.id)
              startActivity(serieIntent)

@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import app.youcef.com.stock2.Model.Filme
 import app.youcef.com.stock2.R
+import com.bumptech.glide.Glide
+
 /**
  * Created by hp on 19/04/2018.
  */
@@ -32,8 +34,8 @@ class FilmeAdapter(val context:Context,val filmes:List<Filme>,val itemClick:(Fil
         val filmeImage=itemView?.findViewById<ImageView>(R.id.imageFilme)
         val filmeTitle=itemView?.findViewById<TextView>(R.id.titleFilme)
         fun bindFilme(filme:Filme,context: Context){
-            val resourceId=context.resources.getIdentifier(filme.photo,"drawable",context.packageName)
-            filmeImage?.setImageResource(resourceId)
+
+            Glide.with(context).load(filme.getImage()).into(filmeImage)
             filmeTitle?.text=filme.title
             itemView.setOnClickListener{(itemClick(filme))}
         }

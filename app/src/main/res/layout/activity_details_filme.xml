@@ -62,21 +62,6 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Bande d'annonce:"
-            android:textColor="@color/colorYellow"
-            android:textSize="20dp" />
-
-        <VideoView
-            android:id="@+id/videoViewFilme"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_weight="1" />
-
-        <TextView
             android:id="@+id/filmesLies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -207,7 +192,7 @@
             android:padding="20dp">
 
             <EditText
-                android:id="@+id/insererCommentaire"
+                android:id="@+id/insererCommentaireFilm"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -221,7 +206,7 @@
                 android:textCursorDrawable="@null" />
 
             <Button
-                android:id="@+id/btnAjouter"
+                android:id="@+id/btnAjouterfilm"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"

@@ -3,8 +3,15 @@ package app.youcef.com.stock2
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast.*
+import app.youcef.com.stock2.Model.Filme
+import app.youcef.com.stock2.Services.DataService
+import app.youcef.com.stock2.remote.FilmeAPIClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity()  {
@@ -54,4 +61,11 @@ class MainActivity : AppCompatActivity()  {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+
+
+
+
+
 }

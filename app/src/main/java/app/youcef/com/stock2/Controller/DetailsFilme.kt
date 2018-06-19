@@ -10,12 +10,16 @@ import app.youcef.com.stock2.Services.DataService
 import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.util.Log
 import android.view.View
 import android.widget.*
 import app.youcef.com.stock2.Adapters.FilmeAdapter
 import app.youcef.com.stock2.Model.Commentaire
+import app.youcef.com.stock2.Model.Filme
 import app.youcef.com.stock2.Utilities.EXTRA_FILME
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details_filme.*
+import kotlinx.android.synthetic.main.activity_details_serie.*
 
 
 class DetailsFilme : AppCompatActivity() {
@@ -23,41 +27,22 @@ class DetailsFilme : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_filme)
-        val index=intent.getIntExtra(EXTRA_FILME,0)
-        val resourceId=this.resources.getIdentifier(DataService.filmes[index].photo,"drawable",this.packageName)
-        var lesDesriptions=resources.getStringArray(R.array.Desriptionfilme)
-        imageDetailFilme?.setImageResource(resourceId)
-        detailFilmeTitle?.text=DataService.filmes[index].title
-        detailFilmeDescription?.text=lesDesriptions[index]
+
+        val index=findFilm(intent.getIntExtra(EXTRA_FILME,0))
+
+        Glide.with(this).load(DataService.filmesProject[index].getImage()).into(imageDetailSerie)
+        detailFilmeTitle?.text=DataService.filmesProject[index].title
+        detailFilmeDescription?.text=DataService.filmesProject[index].overview
         acteursLies?.text = resources.getStringArray(R.array.acteurs)[index]
-        salleProject?.text = DataService.filmes[index].salle
-
-
-
-        //val emplacement = "android.ressource//"+ packageName+"/raw/"+R.raw.video4
-        var emplacement ="android.resource://"+packageName+"/"
-        if(detailFilmeTitle.text == "Pirates des caraïbes")
-        {
-            emplacement = emplacement+""+R.raw.video4
-        }else if(detailFilmeTitle.text == "Avatar 2"){
-            emplacement =emplacement +R.raw.video1
-        }else{
-            videoViewFilme.visibility = View.INVISIBLE
-        }
-
-
-
-
-        val videoViewf = findViewById<View>(R.id.videoViewFilme) as VideoView
-        videoViewf.setVideoURI(Uri.parse(emplacement))
-
-        videoViewf.setMediaController(MediaController(this))
+        salleProject?.text = DataService.filmesProject[index].salle
 
 
 
 
 
-        var recyclerView= findViewById<RecyclerView>(R.id.recyclerViewFilmeLies) as RecyclerView
+
+
+        /*var recyclerView= findViewById<RecyclerView>(R.id.recyclerViewFilmeLies) as RecyclerView
         adapter= FilmeAdapter(this,DataService.filmesLies[index]){filme ->
             println(filme.title)
             val filmeIntent= Intent(this, DetailsFilme::class.java)
@@ -118,6 +103,19 @@ class DetailsFilme : AppCompatActivity() {
             iconJaimePas.setColor(Color.parseColor("#FFEB3B"))
             DataService.nbJaimePasFilme1=DataService.nbJaimePasFilme1+1
             nbJaimePas.text=DataService.nbJaimePasFilme1.toString()
+        }*/
+    }
+
+
+
+    fun findFilm(id:Int):Int{
+        var bool=true
+        var i=0
+        while(bool==true && i<DataService.filmesProject.size){
+            if(DataService.filmesProject[i].id==id){ bool=false ;}
+            i++
         }
+        return i-1
+
     }
 }

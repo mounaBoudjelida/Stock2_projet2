@@ -125,7 +125,7 @@
         android:padding="20dp">
 
         <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/iconJaime"
+            android:id="@+id/iconJaimeSerie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -136,13 +136,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="245"
-            android:id="@+id/nbJaime"
+            android:id="@+id/nbJaimeSerie"
             android:textColor="@color/colorGris"
             android:textSize="18dp"
             android:layout_margin="10dp"/>
 
         <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/iconJaimePas"
+            android:id="@+id/iconJaimePasSerie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="24"
-            android:id="@+id/nbJaimePas"
+            android:id="@+id/nbJaimePasSerie"
             android:textColor="@color/colorGris"
             android:textSize="18dp"
             android:layout_margin="10dp"/>
@@ -165,7 +165,7 @@
         android:padding="20dp"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/insererCommentaire"
+            android:id="@+id/insererCommentaireSerie"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -180,7 +180,7 @@
 
             />
         <Button
-            android:id="@+id/btnAjouter"
+            android:id="@+id/btnAjouterSerie"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Ajouter"

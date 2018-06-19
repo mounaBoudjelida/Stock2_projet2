@@ -34,7 +34,7 @@ class Fragment_serie:Fragment(){
         var view= inflater!!.inflate(R.layout.fragment_serie, container, false)
         var recyclerView=view.findViewById<RecyclerView>(R.id.serieGridView) as RecyclerView
         adapter= SerieAdapter(this.context,DataService.series){serie ->
-            println(serie.title)
+            println(serie.name)
             val serieIntent=Intent(this.context,detailsSerie::class.java)
             serieIntent.putExtra(EXTRA_SERIE,serie.id)
             startActivity(serieIntent)
@@ -72,7 +72,7 @@ class Fragment_serie:Fragment(){
 
                 if(newText.isNullOrBlank() == true  ){
                     adapter = SerieAdapter(context,DataService.series){serie ->
-                        println(serie.title)
+                        println(serie.name)
                         val serieIntent= Intent(context, detailsSerie::class.java)
                         serieIntent.putExtra(EXTRA_SERIE,serie.id)
                         startActivity(serieIntent)
@@ -81,7 +81,7 @@ class Fragment_serie:Fragment(){
                     if(newText != null){
                         val modelfiltre  = filter(newText,DataService.series)
                         adapter= SerieAdapter(context,modelfiltre){serie ->
-                            println(serie.title)
+                            println(serie.name)
                             val serieIntent= Intent(context, detailsSerie::class.java)
                             serieIntent.putExtra(EXTRA_SERIE,serie.id)
                             startActivity(serieIntent)
@@ -106,7 +106,7 @@ class Fragment_serie:Fragment(){
 
         for (item in newList)
         {
-            var txt = item.title
+            var txt = item.name
             if(txt.contains(query,true))
             {
                 filteredList += item
