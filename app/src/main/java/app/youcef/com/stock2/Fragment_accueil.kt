@@ -2,9 +2,7 @@ package  app.youcef.com.stock2
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
@@ -21,9 +19,9 @@ import app.youcef.com.stock2.Model.Serie
 import  app.youcef.com.stock2.Services.DataService
 import app.youcef.com.stock2.Utilities.EXTRA_FILME
 import app.youcef.com.stock2.Utilities.EXTRA_SERIE
-import app.youcef.com.stock2.constants.ApiParam.apiKey
-import app.youcef.com.stock2.remote.FilmeAPIClient
-import app.youcef.com.stock2.remote.SerieAPIClient
+import app.youcef.com.stock2.Constants.ApiParam.apiKey
+import app.youcef.com.stock2.APIs.FilmeAPIClient
+import app.youcef.com.stock2.APIs.SerieAPIClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -37,24 +35,12 @@ class Fragment_accueil():Fragment(){
     lateinit var adapterSerie:SerieAdapter
      override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-
-
-
-        /*_____________________________________________*/
-
-
          var view= inflater!!.inflate(R.layout.fragment_accueil,container, false)
             showMovies()
             showSeries()
 
-
-         /*_____________________________________________*/
-
-
          return view
     }
-
-
 
 
     fun setupRecyclerMovie(movieList: List<Filme>) {
@@ -71,8 +57,6 @@ class Fragment_accueil():Fragment(){
         recyclerView.adapter=adapterFilme
 
     }
-
-
 
 
     fun setupRecyclerSerie(serieList: List<Serie>) {
@@ -96,11 +80,11 @@ class Fragment_accueil():Fragment(){
     var disposableFilm: Disposable? = null
     private fun showMovies() {
 
-        disposableFilm = clientFilm.getArticles(apiKey)
+        disposableFilm = clientFilm.getMoviesNowPlaying(apiKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { result -> setupRecyclerMovie(result.results);DataService.filmes=result.results;DataService.filmesProject=result.results},
+                        { result -> setupRecyclerMovie(result.results);DataService.filmesAprendreDetails=result.results},
                         { error -> Log.e("ERROR", error.message) }
                 )
 
@@ -112,13 +96,13 @@ class Fragment_accueil():Fragment(){
     var disposableSerie: Disposable? = null
     private fun showSeries() {
 
-        disposableSerie = clientSerie.getSeries(apiKey)
+        disposableSerie = clientSerie.getSeriesAiringToday(apiKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { result -> setupRecyclerSerie(result.results)
                             Log.v("rani f serie", "" + result.results)
-                            DataService.seriesEnCoursDeProjection=result.results;},
+                            DataService.seriesAprendreDetails=result.results;},
                         { error -> Log.e("ERROR", error.message) }
                 )
 

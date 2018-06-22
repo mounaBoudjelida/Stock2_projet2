@@ -36,7 +36,6 @@ class detailsEpisode : AppCompatActivity() {
 
         }
         btnAjouter.setOnClickListener {
-            //DataService.addCommentairePersonne(Commentaire(insererCommentairePersonne.text.toString()),DataService.personnes[personneIndex].nomPrenom)
             commentaire1?.text=insererCommentaire.text.toString()
             insererCommentaire.text.clear()
 

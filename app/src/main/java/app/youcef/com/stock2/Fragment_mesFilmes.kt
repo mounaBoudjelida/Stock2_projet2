@@ -1,17 +1,17 @@
 package  app.youcef.com.stock2
 
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import  app.youcef.com.stock2.Adapters.FilmeAdapter
-import app.youcef.com.stock2.Controller.DetailsFilme
-import  app.youcef.com.stock2.Services.DataService
-import app.youcef.com.stock2.Utilities.EXTRA_FILME
+
 
 
 /**
@@ -32,7 +32,17 @@ class Fragment_mesFilmes:Fragment(){
          var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,2)
          recyclerView.layoutManager=mLayoutManager
          recyclerView.adapter=adapter*/
+         /*__________________ Partie offline_______________*/
+         /*__________________________________________________*/
 
+
+
+         /*__________________________________________________*/
+         /*__________________________________________________*/
          return view
-    }
+
+
+
+
+     }
 }

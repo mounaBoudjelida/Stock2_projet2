@@ -1,6 +1,6 @@
 package app.youcef.com.stock2.Model
 
-import app.youcef.com.stock2.constants.ApiParam
+import app.youcef.com.stock2.Constants.ApiParam
 
 /**
  * Created by hp on 19/04/2018.

@@ -7,7 +7,6 @@ import android.graphics.Paint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import android.view.ViewGroup
 import android.widget.Button
 import app.youcef.com.stock2.R
 import app.youcef.com.stock2.Services.DataService
@@ -17,27 +16,25 @@ import android.widget.LinearLayout
 import android.graphics.drawable.shapes.RectShape
 import android.graphics.drawable.ShapeDrawable
 import android.os.Build
-import android.provider.ContactsContract
 import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.util.Log
 import android.widget.TextView
 import app.youcef.com.stock2.Adapters.SerieAdapter
-import app.youcef.com.stock2.Model.Commentaire
 import app.youcef.com.stock2.Model.DetailsSerie
+import app.youcef.com.stock2.Model.Rating
 import app.youcef.com.stock2.Model.Serie
-import app.youcef.com.stock2.Utilities.EXTRA_FILME
 import app.youcef.com.stock2.Utilities.EXTRA_SAISON
-import app.youcef.com.stock2.constants.ApiParam
-import app.youcef.com.stock2.remote.SerieAPIClient
+import app.youcef.com.stock2.Constants.ApiParam
+import app.youcef.com.stock2.Constants.ApiParam.baseImageURL
+import app.youcef.com.stock2.APIs.SerieAPIClient
 import com.bumptech.glide.Glide
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_details_filme.*
-import java.util.*
+
 
 
 class detailsSerie : AppCompatActivity() {
@@ -45,125 +42,15 @@ class detailsSerie : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        var nombreJaime=0
-        var nombreJaimePas=0
         setContentView(R.layout.activity_details_serie)
-        val index=findSerie(intent.getIntExtra(EXTRA_SERIE,0))
-        Log.v("index check", "" +DataService.seriesEnCoursDeProjection[index].getImage())
-        Glide.with(this).load(DataService.seriesEnCoursDeProjection[index].getImage()).into(imageDetailSerie)
 
-        detailSerieTitle?.text=DataService.seriesEnCoursDeProjection[index].name
-        detailSerieDescription?.text=DataService.seriesEnCoursDeProjection[index].overview
+        showDetailsSerie(intent.getIntExtra(EXTRA_SERIE,0))
         showSeriesLiees(intent.getIntExtra(EXTRA_SERIE,0))
-
-
-        val ll_main = findViewById<LinearLayout>(R.id.saisonsLayout)
-        val ll_commentaire = findViewById<LinearLayout>(R.id.commentaireLayout)
-        //var lesSaisons=resources.getIntArray(R.array.saisons)
-        var nbSaisons=0
-        showSeasons(DataService.seriesEnCoursDeProjection[index].id).subscribe(
-                { result ->nbSaisons=result.number_of_seasons
-                    nombreJaime=result.vote_count
-                    nbJaimeSerie.text=result.vote_count.toString()
-                    /*________Pour ajouter des bouttons dynamiquement selon le nombre de saisons ____*/
-                    for (i in 1..nbSaisons){
-                        val button_dynamic = Button(this)
-                        val params = LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                        )
-                        params.setMargins(10,0,10,0)
-                        params.width=80
-                        params.height=80
-                        button_dynamic.layoutParams = LinearLayout.LayoutParams(params)
-                        button_dynamic.text = i.toString()
-                        button_dynamic.id=index+i
-                        button_dynamic.setBackgroundColor(rgb(54,78,98))
-                        button_dynamic.setTextColor(Color.parseColor("#FFEB3B"))
-                        val shapedrawable = ShapeDrawable()
-                        shapedrawable.shape = RectShape()
-                        shapedrawable.paint.color = Color.parseColor("#FFEB3B")
-                        shapedrawable.paint.strokeWidth = 3f
-                        shapedrawable.getPaint().setStyle(Paint.Style.STROKE);
-                        button_dynamic.setBackground(shapedrawable)
-
-                        button_dynamic.setOnClickListener {
-                            val saisonIntent= Intent(this,detailsSaison::class.java)
-                            saisonIntent.putExtra(EXTRA_SAISON,i-1)
-                            startActivity(saisonIntent)
-                        }
-
-                        ll_main.addView(button_dynamic)
-                    }
-                },
-                { error -> Log.e("ERROR", error.message) }
-        )
-
-
-        /*________Pour ajouter des commentaires dynamiquement a paratir de la liste des commentaires ____*/
-        var lesCommentairesDeLaSerie:ArrayList<Commentaire>
-        lesCommentairesDeLaSerie=DataService.getListeCommentaireSerie(DataService.seriesEnCoursDeProjection[index].name)
-        for(i in 0..lesCommentairesDeLaSerie.count()-1)
-        {
-            val commentaire=TextView(this)
-            val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            params.setMargins(20,10,0,0)
-            commentaire.layoutParams=LinearLayout.LayoutParams(params)
-            commentaire.text="- "+lesCommentairesDeLaSerie[i].toString()
-            commentaire.textSize=16f
-            commentaire.setTextColor(Color.parseColor("#FAFAFA"))
-            ll_commentaire.addView(commentaire)
-
-        }
-        btnAjouterSerie.setOnClickListener {
-            DataService.addCommentaireSerie(Commentaire(insererCommentaireSerie.text.toString()),DataService.seriesEnCoursDeProjection[index].name)
-            val commentaire=TextView(this)
-            val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            params.setMargins(20,10,0,0)
-            commentaire.layoutParams=LinearLayout.LayoutParams(params)
-            commentaire.text="- "+Commentaire(insererCommentaireSerie.text.toString())
-            commentaire.textSize=16f
-            commentaire.setTextColor(Color.parseColor("#FAFAFA"))
-            ll_commentaire.addView(commentaire)
-            insererCommentaireSerie.text.clear()
-        }
-
-
-        nbJaimePasSerie.text=nombreJaimePas.toString()
-        iconJaimeSerie.setOnClickListener {
-            iconJaimeSerie.setColor(Color.parseColor("#FFEB3B"))
-
-            nbJaimeSerie.text=(nombreJaime+1).toString()
-
-        }
-        iconJaimePasSerie.setOnClickListener {
-            iconJaimePasSerie.setColor(Color.parseColor("#FFEB3B"))
-
-            nbJaimePasSerie.text=(nombreJaimePas+1).toString()
-
-        }
-
-
+        showSeasons(intent.getIntExtra(EXTRA_SERIE,0))
+        showCommentaires(intent.getIntExtra(EXTRA_SERIE,0))
 
     }
 
-    fun findSerie(id:Int):Int{
-        var bool=true
-        var i=0
-        while(bool==true && i<DataService.seriesEnCoursDeProjection.size){
-            if(DataService.seriesEnCoursDeProjection[i].id==id){ bool=false ;}
-            i++
-        }
-        return i-1
-
-    }
 
 
 
@@ -180,7 +67,7 @@ class detailsSerie : AppCompatActivity() {
                 .subscribe(
                         { result ->setupRecyclerSerieLiess(result.results)
                             Log.v("rani f serie liees", "" + result.results)
-                            DataService.seriesEnCoursDeProjection=result.results;},
+                            DataService.seriesAprendreDetails=result.results},
                         { error -> Log.e("ERROR", error.message) }
                 )
 
@@ -209,9 +96,58 @@ class detailsSerie : AppCompatActivity() {
         SerieAPIClient.create()
     }
     var disposableDetailsSerie: Disposable? = null
-    private fun showSeasons(id:Int) :Observable<DetailsSerie>{
+    private fun showSeasons(id:Int) {
 
-       return clientDetailsSerie.getDetails(id,ApiParam.apiKey)
+        disposableDetailsSerie=clientDetailsSerie.getDetails(id,ApiParam.apiKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+               .subscribe(
+                       { result ->
+                           val ll_main = findViewById<LinearLayout>(R.id.saisonsLayout)
+                           val nbSaisons=result.number_of_seasons
+                           nbJaimeSerie.text=result.vote_count.toString()
+                           /*________Pour ajouter des bouttons dynamiquement selon le nombre de saisons ____*/
+                           for (i in 1..nbSaisons){
+                               val button_dynamic = Button(this)
+                               val params = LinearLayout.LayoutParams(
+                                       LinearLayout.LayoutParams.WRAP_CONTENT,
+                                       LinearLayout.LayoutParams.WRAP_CONTENT
+                               )
+                               params.setMargins(10,0,10,0)
+                               params.width=80
+                               params.height=80
+                               button_dynamic.layoutParams = LinearLayout.LayoutParams(params)
+                               button_dynamic.text = i.toString()
+                               button_dynamic.id=result.id
+                               button_dynamic.setBackgroundColor(rgb(54,78,98))
+                               button_dynamic.setTextColor(Color.parseColor("#FFEB3B"))
+                               val shapedrawable = ShapeDrawable()
+                               shapedrawable.shape = RectShape()
+                               shapedrawable.paint.color = Color.parseColor("#FFEB3B")
+                               shapedrawable.paint.strokeWidth = 3f
+                               shapedrawable.getPaint().setStyle(Paint.Style.STROKE);
+                               button_dynamic.setBackground(shapedrawable)
+
+                               button_dynamic.setOnClickListener {
+                                   val saisonIntent= Intent(this,detailsSaison::class.java)
+                                   saisonIntent.putExtra(EXTRA_SAISON,i-1)
+                                   startActivity(saisonIntent)
+                               }
+
+                               ll_main.addView(button_dynamic)
+                           }
+                       },
+                       { error -> Log.e("ERROR", error.message) }
+               )
+
+
+
+    }
+
+    /* Pour noter une serie */
+    private fun postRating(id:Int) :Observable<DetailsSerie>{
+
+        return clientDetailsSerie.postRating(id, Rating(1.0),ApiParam.apiKey)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
@@ -219,6 +155,106 @@ class detailsSerie : AppCompatActivity() {
     }
 
 
+    val client by lazy {
+        SerieAPIClient.create()
+    }
+    var disposable: Disposable? = null
+    private fun showDetailsSerie(id:Int) {
 
+        disposable = client.getDetails(id, ApiParam.apiKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            Log.v("dans details filme", "" + result)
+
+                            Glide.with(this).load(baseImageURL+result.poster_path).into(imageDetailSerie)
+                            detailSerieTitle?.text=result.name
+                            detailSerieDescription?.text=result.overview
+                            //date?.text=result.release_date
+                            Log.v("yyyyyy", ""+result.production_companies)
+
+                        },
+                        { error -> Log.e("ERROR", error.message) }
+                )
+
+    }
+
+
+    val clientCommentaire by lazy {
+        SerieAPIClient.create()
+    }
+    var disposableCommentaire: Disposable? = null
+    private fun showCommentaires(id:Int) {
+
+        disposableCommentaire = clientCommentaire.getCommentairesSerie(id,ApiParam.apiKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->val ll_commentaire = findViewById<LinearLayout>(R.id.commentaireLayoutSerie)
+                            Log.v("commentaire size serie",""+result.results.size)
+                            if(result.results.size==0){
+
+                                val Uncommentaire=TextView(this)
+                                val params = LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                params.setMargins(20,0,0,0)
+                                Uncommentaire.layoutParams=LinearLayout.LayoutParams(params)
+                                Uncommentaire.text="Aucun commentaire pour cette série."
+                                Uncommentaire.textSize=16f
+                                Uncommentaire.setTextColor(Color.parseColor("#FAFAFA"))
+                                ll_commentaire.addView(Uncommentaire)
+
+                            }
+                            for(i in 0..result.results.count()-1)
+                            {
+                                val theAuthor= TextView(this)
+                                val p= LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                p.setMargins(20,10,0,0)
+                                theAuthor.layoutParams=LinearLayout.LayoutParams(p)
+                                theAuthor.text=result.results[i].author
+                                theAuthor.setTextColor(Color.parseColor("#FFEB3B"))
+                                ll_commentaire.addView(theAuthor)
+
+
+                                val Uncommentaire=TextView(this)
+                                val params = LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                params.setMargins(20,10,0,0)
+                                Uncommentaire.layoutParams=LinearLayout.LayoutParams(params)
+                                Uncommentaire.text="    "+result.results[i].content
+                                Uncommentaire.textSize=16f
+                                Uncommentaire.setTextColor(Color.parseColor("#FAFAFA"))
+                                ll_commentaire.addView(Uncommentaire)
+
+                                val uneLigne=TextView(this)
+                                val param=LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                param.setMargins(50,10,50,10)
+                                uneLigne.layoutParams=LinearLayout.LayoutParams(param)
+                                uneLigne.text="______________________________________________"
+                                uneLigne.setTextColor(Color.parseColor("#FAFAFA"))
+                                ll_commentaire.addView(uneLigne)
+
+
+
+                            }
+
+
+
+                        },
+                        { error -> Log.e("ERROR here", error.message) }
+                )
+
+    }
 
 }

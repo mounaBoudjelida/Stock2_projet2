@@ -33,8 +33,8 @@ class PersonneAdapter(val context: Context, val personnes: List<Personne>):BaseA
 
 
         val personne=personnes[position]
-        holder.personneName?.text=personne.nomPrenom
-        val resourceId=context.resources.getIdentifier(personne.photo,"drawable",context.packageName)
+        holder.personneName?.text=personne.name
+        val resourceId=context.resources.getIdentifier(personne.name,"drawable",context.packageName)
         holder.personneImage?.setImageResource(resourceId)
         return personneView
     }

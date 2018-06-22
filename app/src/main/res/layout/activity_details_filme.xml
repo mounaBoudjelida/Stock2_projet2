@@ -20,14 +20,83 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageDetailFilme"
-                android:layout_width="148dp"
-                android:layout_height="200dp"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/reasons_why" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:padding="0dp">
+
+                    <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/iconJaime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        app:materialIcon="thumb_up"
+                        app:materialIconColor="@color/colorGris"
+                        app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+                    <TextView
+                        android:id="@+id/nbJaime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="245"
+                        android:textColor="@color/colorGris"
+                        android:textSize="18dp" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageDetailFilme"
+                    android:layout_width="186dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitCenter"
+                    android:textAlignment="center"
+                    app:srcCompat="@drawable/reasons_why" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/iconJaimePas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        app:materialIcon="thumb_down"
+                        app:materialIconColor="@color/colorGris"
+                        app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+                    <TextView
+                        android:id="@+id/nbJaimePas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="18"
+                        android:textColor="@color/colorGris"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +117,7 @@
                 <TextView
                     android:id="@+id/detailFilmeDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
                     android:text="Une petite description"
@@ -57,6 +126,31 @@
                     android:textSize="16dp" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/dateRealisationFime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Date de réalisation "
+                    android:textColor="@color/colorYellow"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateRealisationFilmeContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Date de réalisation "
+                    android:textColor="@color/colorGris"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
 
 
         </LinearLayout>
@@ -67,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="Filmes liées:"
+            android:text="Filmes liées "
             android:textColor="@color/colorYellow"
             android:textSize="20dp" />
 
@@ -89,83 +183,23 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="Acteurs et Réalisateurs:"
+            android:text="Sociétés de production "
             android:textColor="@color/colorYellow"
             android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/acteursLies"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewProductionCompany"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Acteurs et Réalisateurs:"
-            android:textColor="@color/colorEcriture"
-            android:textSize="16dp" />
+            android:layout_marginBottom="28dp"
+            app:layout_constraintBottom_toTopOf="@+id/nameProductionCompany"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+        </android.support.v7.widget.RecyclerView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Salles de projection"
-            android:textColor="@color/colorYellow"
-            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/salleProject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorEcriture"
-            android:textSize="16dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
-            <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/iconJaime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:materialIcon="thumb_up"
-                app:materialIconColor="@color/colorGris"
-                app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
-            <TextView
-                android:id="@+id/nbJaime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="245"
-                android:textColor="@color/colorGris"
-                android:textSize="18dp" />
-
-            <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/iconJaimePas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:materialIcon="thumb_down"
-                app:materialIconColor="@color/colorGris"
-                app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
-            <TextView
-                android:id="@+id/nbJaimePas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="24"
-                android:textColor="@color/colorGris"
-                android:textSize="18dp" />
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/commentaires"
@@ -174,12 +208,12 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:text="Commentaires:"
+            android:text="Commentaires "
             android:textColor="@color/colorYellow"
             android:textSize="20dp" />
         <!-- ce layout va contenir la liste des commentaires qui sera ajoutée automatiquement -->
         <LinearLayout
-            android:id="@+id/commentaireLayout"
+            android:id="@+id/commentaireLayoutFilm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

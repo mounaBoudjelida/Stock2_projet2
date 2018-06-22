@@ -19,14 +19,90 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+                <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/iconJaimeSerie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:materialIcon="thumb_up"
+                    app:materialIconColor="@color/colorGris"
+                    app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+                <TextView
+                    android:id="@+id/nbJaimeSerie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="245"
+                    android:textColor="@color/colorGris"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageDetailSerie"
+                android:layout_width="186dp"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:textAlignment="center"
+                app:srcCompat="@drawable/reasons_why" />
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/iconJaimePasSerie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:materialIcon="thumb_down"
+                    app:materialIconColor="@color/colorGris"
+                    app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
+                <TextView
+                    android:id="@+id/nbJaimePasSerie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="18"
+                    android:textColor="@color/colorGris"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageDetailSerie"
-            android:layout_width="148dp"
-            android:layout_height="200dp"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/reasons_why" />
+
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent"
@@ -45,7 +121,7 @@
            <TextView
                android:id="@+id/detailSerieDescription"
                android:layout_width="match_parent"
-               android:layout_height="150dp"
+               android:layout_height="wrap_content"
                android:layout_marginBottom="10dp"
                android:padding="10dp"
                android:text="Une petite description"
@@ -109,7 +185,7 @@
         android:id="@+id/commentaires"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Commentaires et évaluations"
+        android:text="Commentaires "
         android:textColor="@color/colorYellow"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
@@ -124,40 +200,14 @@
         android:gravity="left"
         android:padding="20dp">
 
-        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/iconJaimeSerie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:materialIcon="thumb_up"
-            app:materialIconColor="@color/colorGris"
-            app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="245"
-            android:id="@+id/nbJaimeSerie"
-            android:textColor="@color/colorGris"
-            android:textSize="18dp"
-            android:layout_margin="10dp"/>
 
-        <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/iconJaimePasSerie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:materialIcon="thumb_down"
-            app:materialIconColor="@color/colorGris"
-            app:materialIconSize="28dp" /> <!-- VERY IMPORTANT -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="24"
-            android:id="@+id/nbJaimePasSerie"
-            android:textColor="@color/colorGris"
-            android:textSize="18dp"
-            android:layout_margin="10dp"/>
-
+    </LinearLayout>
+    <!-- ce layout va contenir la liste des commentaires qui sera ajoutée automatiquement -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/commentaireLayoutSerie"
+        android:orientation="vertical">
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -193,14 +243,7 @@
             />
 
     </LinearLayout>
-    <!-- ce layout va contenir la liste des commentaires qui sera ajoutée automatiquement -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/commentaireLayout"
-        android:background="@drawable/customborder"
-        android:orientation="vertical">
-    </LinearLayout>
+
 
 
 

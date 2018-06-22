@@ -2,25 +2,25 @@ package app.youcef.com.stock2
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.media.VolumeShaper
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.youcef.com.stock2.Adapters.FilmeAdapter
 import app.youcef.com.stock2.Adapters.SerieAdapter
-import app.youcef.com.stock2.Controller.DetailsFilme
 import app.youcef.com.stock2.Controller.detailsSerie
-import app.youcef.com.stock2.Model.Filme
 import app.youcef.com.stock2.Model.Serie
 import app.youcef.com.stock2.Services.DataService
-import app.youcef.com.stock2.Utilities.EXTRA_FILME
 import app.youcef.com.stock2.Utilities.EXTRA_SERIE
-import kotlinx.android.synthetic.main.fragment_filme.*
+import app.youcef.com.stock2.Constants.ApiParam.apiKey
+import app.youcef.com.stock2.APIs.SerieAPIClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_serie.*
 
 
@@ -32,28 +32,7 @@ class Fragment_serie:Fragment(){
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         var view= inflater!!.inflate(R.layout.fragment_serie, container, false)
-        var recyclerView=view.findViewById<RecyclerView>(R.id.serieGridView) as RecyclerView
-        adapter= SerieAdapter(this.context,DataService.series){serie ->
-            println(serie.name)
-            val serieIntent=Intent(this.context,detailsSerie::class.java)
-            serieIntent.putExtra(EXTRA_SERIE,serie.id)
-            startActivity(serieIntent)
-        }
-        var spanCount=2 //Pour changer le nombre de colonnes selon l'orientation
-        val orientation=resources.configuration.orientation //1 for portrait and 2 for landscape
-        if(orientation== Configuration.ORIENTATION_LANDSCAPE){
-            spanCount=4
-        }
-        val screenSize=resources.configuration.screenWidthDp//Pour changer le nombre de colonnes selon la taille du device
-        if(screenSize>720)
-        {
-            spanCount=3
-        }
-        var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,spanCount)
-        recyclerView.layoutManager=mLayoutManager
-        recyclerView.adapter=adapter
-
-
+        showSeries()
         return view
     }
 
@@ -71,7 +50,7 @@ class Fragment_serie:Fragment(){
 
 
                 if(newText.isNullOrBlank() == true  ){
-                    adapter = SerieAdapter(context,DataService.series){serie ->
+                    adapter = SerieAdapter(context,DataService.seriesAprendreDetails){serie ->
                         println(serie.name)
                         val serieIntent= Intent(context, detailsSerie::class.java)
                         serieIntent.putExtra(EXTRA_SERIE,serie.id)
@@ -79,7 +58,7 @@ class Fragment_serie:Fragment(){
                     }
                 }else {
                     if(newText != null){
-                        val modelfiltre  = filter(newText,DataService.series)
+                        val modelfiltre  = filter(newText,DataService.seriesAprendreDetails)
                         adapter= SerieAdapter(context,modelfiltre){serie ->
                             println(serie.name)
                             val serieIntent= Intent(context, detailsSerie::class.java)
@@ -115,4 +94,51 @@ class Fragment_serie:Fragment(){
 
         return filteredList
     }
+
+
+
+    /* using the API */
+    val clientSerie by lazy {
+        SerieAPIClient.create()
+    }
+    var disposableSerie: Disposable? = null
+    private fun showSeries() {
+
+        disposableSerie = clientSerie.getToutesLesSerie(apiKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result -> setupRecyclerSerie(result.results);DataService.seriesAprendreDetails=result.results;},
+                        { error -> Log.e("ERROR", error.message) }
+                )
+
+    }
+
+    fun setupRecyclerSerie(serieList: List<Serie>) {
+
+        var recyclerView=view?.findViewById<RecyclerView>(R.id.serieGridView) as RecyclerView
+        adapter= SerieAdapter(this.context,serieList){serie ->
+
+            val serieIntent=Intent(this.context,detailsSerie::class.java)
+            serieIntent.putExtra(EXTRA_SERIE,serie.id)
+            startActivity(serieIntent)
+        }
+        var spanCount=2 //Pour changer le nombre de colonnes selon l'orientation
+        val orientation=resources.configuration.orientation //1 for portrait and 2 for landscape
+        if(orientation== Configuration.ORIENTATION_LANDSCAPE){
+            spanCount=4
+        }
+        val screenSize=resources.configuration.screenWidthDp//Pour changer le nombre de colonnes selon la taille du device
+        if(screenSize>720)
+        {
+            spanCount=3
+        }
+        var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,spanCount)
+        recyclerView.layoutManager=mLayoutManager
+        recyclerView.adapter=adapter
+
+    }
+
+
+
 }

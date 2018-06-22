@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import app.youcef.com.stock2.Model.Personne
 import app.youcef.com.stock2.R
+import com.bumptech.glide.Glide
 
 /**
  * Created by hp on 17/04/2018.
@@ -32,9 +33,9 @@ class PersonneRecycleAdapter(val context:Context,val personnes:List<Personne>,va
         val personneImage=itemView?.findViewById<ImageView>(R.id.personneImage)
         val personneName=itemView?.findViewById<TextView>(R.id.personneName)
         fun bindPersonne(personne:Personne,context:Context){
-            val resourceId=context.resources.getIdentifier(personne.photo,"drawable",context.packageName)
-            personneImage?.setImageResource(resourceId)
-            personneName?.text=personne.nomPrenom
+
+            Glide.with(context).load(personne.getImage()).into(personneImage)
+            personneName?.text=personne.name
             itemView.setOnClickListener {
                 itemClick(personne)
             }
