@@ -84,7 +84,7 @@ class DetailsFilme : AppCompatActivity() {
 
                             like.setOnClickListener {
                                 db.filmDao().saveFilme(film)
-                                saveImageFilme(film)
+                                //saveImageFilme(film)
                             }
 
                         },
