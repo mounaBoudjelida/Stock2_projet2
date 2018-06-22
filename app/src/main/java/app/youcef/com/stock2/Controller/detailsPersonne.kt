@@ -1,5 +1,6 @@
 package app.youcef.com.stock2.Controller
 
+import android.arch.persistence.room.Room
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -17,12 +18,14 @@ import app.youcef.com.stock2.Utilities.EXTRA_FILME
 import app.youcef.com.stock2.Utilities.EXTRA_PERSONNE
 import app.youcef.com.stock2.Constants.ApiParam
 import app.youcef.com.stock2.APIs.ActeurAPIClient
+import app.youcef.com.stock2.AppDB
 import com.bumptech.glide.Glide
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_details_personne.*
+import kotlinx.android.synthetic.main.fragment_filme.*
 
 class detailsPersonne : AppCompatActivity() {
     lateinit var adapter: FilmeAdapter
@@ -30,6 +33,11 @@ class detailsPersonne : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_personne)
+
+
+
+
+
         val personneIndex=findPersonne(intent.getIntExtra(EXTRA_PERSONNE,0))
 
         Glide.with(this).load(DataService.personnes[personneIndex].getImage()).into(imageDetails)
@@ -99,7 +107,7 @@ class detailsPersonne : AppCompatActivity() {
         p.known_for!!.forEach {
             listFilm.add(Filme(it.id, it.vote_count,it.video,it.vote_average,
                     it.title,it.popularity,it.poster_path,it.original_language,it.original_title,
-                    it.genre_ids,it.backdrop_path,it.adult,it.overview,null,null,null))
+                    it.backdrop_path,it.adult,it.overview))
         }
         setupRecyclerFilmographie(listFilm)
 

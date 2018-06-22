@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import  app.youcef.com.stock2.Adapters.FilmeAdapter
-
+import app.youcef.com.stock2.Controller.DetailsFilme
+import app.youcef.com.stock2.Services.DataService
+import app.youcef.com.stock2.Utilities.EXTRA_FILME
 
 
 /**
@@ -20,10 +22,16 @@ import  app.youcef.com.stock2.Adapters.FilmeAdapter
 class Fragment_mesFilmes:Fragment(){
     lateinit var adapter:FilmeAdapter
      override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+         val db = Room.databaseBuilder(this.context, AppDB::class.java,"MovieDB")
+                 .allowMainThreadQueries()
+                 .build()
+
+
+
 
          var view= inflater!!.inflate(R.layout.fragment_mesfilmes, container, false)
          var recyclerView=view.findViewById<RecyclerView>(R.id.mesfilmesGridView) as RecyclerView
-         /*adapter= FilmeAdapter(this.context,DataService.mesFilmes){filme ->
+         adapter= FilmeAdapter(this.context,db.filmDao().getFilmes()){ filme ->
              println(filme.title)
              val filmeIntent= Intent(this.context, DetailsFilme::class.java)
              filmeIntent.putExtra(EXTRA_FILME,filme.id)
@@ -31,7 +39,7 @@ class Fragment_mesFilmes:Fragment(){
          }
          var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,2)
          recyclerView.layoutManager=mLayoutManager
-         recyclerView.adapter=adapter*/
+         recyclerView.adapter=adapter
          /*__________________ Partie offline_______________*/
          /*__________________________________________________*/
 

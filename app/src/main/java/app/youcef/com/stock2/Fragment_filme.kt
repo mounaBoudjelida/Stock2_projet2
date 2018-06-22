@@ -32,7 +32,12 @@ class Fragment_filme:Fragment(){
      override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
          var view= inflater!!.inflate(R.layout.fragment_filme, container, false)
+
          showMovies()
+
+
+
+
          return view
     }
 
@@ -127,10 +132,5 @@ class Fragment_filme:Fragment(){
         var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,2) as RecyclerView.LayoutManager
         recyclerView.layoutManager=mLayoutManager
         recyclerView.adapter=adapter
-
     }
-
-
-
-
 }

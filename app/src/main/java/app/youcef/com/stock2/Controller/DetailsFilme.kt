@@ -1,9 +1,12 @@
 package app.youcef.com.stock2.Controller
 
+import android.arch.persistence.room.Room
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.support.v7.widget.RecyclerView
 import app.youcef.com.stock2.R
 import app.youcef.com.stock2.Services.DataService
@@ -19,11 +22,17 @@ import app.youcef.com.stock2.Utilities.EXTRA_FILME
 import app.youcef.com.stock2.Constants.ApiParam
 import app.youcef.com.stock2.Constants.ApiParam.baseImageURL
 import app.youcef.com.stock2.APIs.FilmeAPIClient
+import app.youcef.com.stock2.AppDB
+import app.youcef.com.stock2.R.id.filme
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_details_filme.*
+import kotlinx.android.synthetic.main.fragment_filme.*
+import java.io.File
+import java.io.FileOutputStream
+import java.net.URL
 
 
 class DetailsFilme : AppCompatActivity() {
@@ -32,12 +41,19 @@ class DetailsFilme : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_filme)
+
+
+
+
         showDetailsFilm(intent.getIntExtra(EXTRA_FILME,0))
+        //getDetailDB(intent.getIntExtra(EXTRA_FILME,0))
+
         showFilmesLiees(intent.getIntExtra(EXTRA_FILME,0))
         showProductionCompany(intent.getIntExtra(EXTRA_FILME,0))
         showCommentaires(intent.getIntExtra(EXTRA_FILME,0))
 
     }
+
 
 
     val clientFilme by lazy {
@@ -51,19 +67,76 @@ class DetailsFilme : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { result ->
+
                             Log.v("dans details filme", "" + result)
                             Glide.with(this).load(baseImageURL+result.poster_path).into(imageDetailFilme)
+
+                            var film = Filme(result.id,null,null,null,result.original_title,
+                                    null,result.poster_path,null,
+                                    result.original_title,null,null,result.overview)
                             detailFilmeTitle?.text=result.original_title
                             detailFilmeDescription?.text=result.overview
                             dateRealisationFilmeContent?.text=result.release_date
+                            val db = Room.databaseBuilder(applicationContext, AppDB::class.java,"MovieDB")
+                                    .allowMainThreadQueries()
+                                    .build()
 
+
+                            like.setOnClickListener {
+                                db.filmDao().saveFilme(film)
+                                saveImageFilme(film)
+                            }
 
                         },
                         { error -> Log.e("ERROR", error.message) }
                 )
-
     }
 
+
+    private fun getDetailDB(id:Int){
+        val db = Room.databaseBuilder(applicationContext, AppDB::class.java,"MovieDB")
+                .allowMainThreadQueries()
+                .build()
+        var film = db.filmDao().getFilmeDetail(id)
+        if(film != null) {
+            detailFilmeTitle?.text = film.original_title
+            detailFilmeDescription?.text = film.overview
+
+            //val photoPath = Environment.getExternalStorageDirectory().toString() + "/"+id.toString()+".jpg"
+            //val bitmap = BitmapFactory.decodeFile(photoPath)
+            //holder.imageView.setImageBitmap(bitmap)
+
+            Glide.with(this).load(baseImageURL + film.poster_path).into(imageDetailFilme)
+        }
+    }
+
+
+
+    private fun saveImageFilme (film:Filme){
+        val url = URL(film.getImage())
+        Log.e("ID ", "URL: $url")
+        val input = url.openStream()
+        try {
+            //The sdcard directory e.g. '/sdcard' can be used directly, or
+            //more safely abstracted with getExternalStorageDirectory()
+            val storagePath = Environment.getExternalStorageDirectory()
+
+            val output = FileOutputStream(File(storagePath, film.id.toString()+".jpg"))
+            try {
+                val buffer = ByteArray(2048)
+                var bytesRead = 0
+                bytesRead = input.read(buffer, 0, buffer.size)
+                while ((bytesRead) >= 0) {
+                    output.write(buffer, 0, bytesRead)
+                    bytesRead = input.read(buffer, 0, buffer.size)
+                }
+            } finally {
+                output.close()
+            }
+        } finally {
+            input.close()
+        }
+    }
 
     /*  Pour recuperer les filmes liees */
     val clientFilmeLies by lazy {
@@ -80,6 +153,16 @@ class DetailsFilme : AppCompatActivity() {
                             DataService.filmesAprendreDetails=result.results;},
                         { error -> Log.e("ERROR", error.message) }
                 )
+
+    }
+
+
+    private fun showFilmesLiesDB(id:Int){
+        val db = Room.databaseBuilder(applicationContext, AppDB::class.java,"MovieDB")
+                .allowMainThreadQueries()
+                .build()
+        var f = db.filmDao().getFilmeLies(id)
+        setupRecyclerFilmesLies(f)
 
     }
 
@@ -131,7 +214,6 @@ class DetailsFilme : AppCompatActivity() {
                             },
                         { error -> Log.e("ERROR", error.message) }
                 )
-
     }
 
     val clientCommentaire by lazy {
