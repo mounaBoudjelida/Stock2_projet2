@@ -35,6 +35,7 @@ class Fragment_mesFilmes:Fragment(){
              println(filme.title)
              val filmeIntent= Intent(this.context, DetailsFilme::class.java)
              filmeIntent.putExtra(EXTRA_FILME,filme.id)
+             filmeIntent.putExtra("mode","local")
              startActivity(filmeIntent)
          }
          var mLayoutManager:RecyclerView.LayoutManager= GridLayoutManager(this.context,2)

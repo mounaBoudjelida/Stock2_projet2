@@ -23,9 +23,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 
-/**
- * Created by hp on 17/04/2018.
- */
 class Fragment_filme:Fragment(){
     lateinit var adapter:FilmeAdapter
     lateinit var recyclerView : RecyclerView

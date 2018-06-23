@@ -13,6 +13,7 @@ import app.youcef.com.stock2.Services.DataService
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.util.Log
+import android.view.View
 import android.widget.*
 import app.youcef.com.stock2.Adapters.FilmeAdapter
 import app.youcef.com.stock2.Adapters.ProductionCompanyAdapter
@@ -23,6 +24,7 @@ import app.youcef.com.stock2.Constants.ApiParam
 import app.youcef.com.stock2.Constants.ApiParam.baseImageURL
 import app.youcef.com.stock2.APIs.FilmeAPIClient
 import app.youcef.com.stock2.AppDB
+import app.youcef.com.stock2.FilmesLies
 import app.youcef.com.stock2.R.id.filme
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -44,13 +46,22 @@ class DetailsFilme : AppCompatActivity() {
 
 
 
+        var mode = intent.getStringExtra("mode")
+        Log.i("@trolool","$mode")
+        if(mode == "local"){
+            like.visibility = View.INVISIBLE
+            getDetailDB(intent.getIntExtra(EXTRA_FILME,0))
+            showFilmesLiesDB(intent.getIntExtra(EXTRA_FILME,0))
 
-        showDetailsFilm(intent.getIntExtra(EXTRA_FILME,0))
-        //getDetailDB(intent.getIntExtra(EXTRA_FILME,0))
+        }else {
+            like.visibility = View.VISIBLE
+            showDetailsFilm(intent.getIntExtra(EXTRA_FILME,0))
+            showFilmesLiees(intent.getIntExtra(EXTRA_FILME,0))
+            showProductionCompany(intent.getIntExtra(EXTRA_FILME,0))
+            showCommentaires(intent.getIntExtra(EXTRA_FILME,0))
+        }
 
-        showFilmesLiees(intent.getIntExtra(EXTRA_FILME,0))
-        showProductionCompany(intent.getIntExtra(EXTRA_FILME,0))
-        showCommentaires(intent.getIntExtra(EXTRA_FILME,0))
+
 
     }
 
@@ -73,7 +84,7 @@ class DetailsFilme : AppCompatActivity() {
 
                             var film = Filme(result.id,null,null,null,result.original_title,
                                     null,result.poster_path,null,
-                                    result.original_title,null,null,result.overview)
+                                    result.original_title,"l",null,result.overview)
                             detailFilmeTitle?.text=result.original_title
                             detailFilmeDescription?.text=result.overview
                             dateRealisationFilmeContent?.text=result.release_date
@@ -84,7 +95,12 @@ class DetailsFilme : AppCompatActivity() {
 
                             like.setOnClickListener {
                                 db.filmDao().saveFilme(film)
-                                //saveImageFilme(film)
+                                saveImageFilme(film)
+                                DataService.filmesAprendreDetails.forEach {
+                                    db.filmDao().saveFilme(it)
+                                    db.filmDao().saveFilmeLies(FilmesLies(it.id,film.id))
+                                    saveImageFilme(it)
+                                }
                             }
 
                         },
@@ -102,10 +118,6 @@ class DetailsFilme : AppCompatActivity() {
             detailFilmeTitle?.text = film.original_title
             detailFilmeDescription?.text = film.overview
 
-            //val photoPath = Environment.getExternalStorageDirectory().toString() + "/"+id.toString()+".jpg"
-            //val bitmap = BitmapFactory.decodeFile(photoPath)
-            //holder.imageView.setImageBitmap(bitmap)
-
             Glide.with(this).load(baseImageURL + film.poster_path).into(imageDetailFilme)
         }
     }
@@ -115,27 +127,31 @@ class DetailsFilme : AppCompatActivity() {
     private fun saveImageFilme (film:Filme){
         val url = URL(film.getImage())
         Log.e("ID ", "URL: $url")
-        val input = url.openStream()
-        try {
-            //The sdcard directory e.g. '/sdcard' can be used directly, or
-            //more safely abstracted with getExternalStorageDirectory()
-            val storagePath = Environment.getExternalStorageDirectory()
 
-            val output = FileOutputStream(File(storagePath, film.id.toString()+".jpg"))
+        Thread({
+            val input = url.openStream()
             try {
-                val buffer = ByteArray(2048)
-                var bytesRead = 0
-                bytesRead = input.read(buffer, 0, buffer.size)
-                while ((bytesRead) >= 0) {
-                    output.write(buffer, 0, bytesRead)
+                //The sdcard directory e.g. '/sdcard' can be used directly, or
+                //more safely abstracted with getExternalStorageDirectory()
+                val storagePath = Environment.getExternalStorageDirectory()
+                val output = FileOutputStream(File(storagePath, film.id.toString()+".jpg"))
+                try {
+                    val buffer = ByteArray(2048)
+                    var bytesRead = 0
                     bytesRead = input.read(buffer, 0, buffer.size)
+                    while ((bytesRead) >= 0) {
+                        output.write(buffer, 0, bytesRead)
+                        bytesRead = input.read(buffer, 0, buffer.size)
+                    }
+                } finally {
+                    output.close()
                 }
             } finally {
-                output.close()
+                input.close()
             }
-        } finally {
-            input.close()
-        }
+        }).start()
+
+
     }
 
     /*  Pour recuperer les filmes liees */
@@ -157,13 +173,16 @@ class DetailsFilme : AppCompatActivity() {
     }
 
 
-    private fun showFilmesLiesDB(id:Int){
+    private fun showFilmesLiesDB(id:Int) {
         val db = Room.databaseBuilder(applicationContext, AppDB::class.java,"MovieDB")
                 .allowMainThreadQueries()
                 .build()
         var f = db.filmDao().getFilmeLies(id)
-        setupRecyclerFilmesLies(f)
 
+        f.forEach {
+            Log.i("@lolilol","${it.id}}")
+        }
+        setupRecyclerFilmesLies(f)
     }
 
     fun setupRecyclerFilmesLies(filmesLiesList: List<Filme>) {

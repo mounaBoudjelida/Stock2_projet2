@@ -17,7 +17,7 @@ interface FilmeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFilme(filme : Filme)
 
-    @Query("SELECT * from Filme")
+    @Query("SELECT * from Filme as f where f.backdrop_path = 'l'")
     fun getFilmes() : List<Filme>
 
 
